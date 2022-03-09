@@ -46,8 +46,8 @@ async function run() {
       res.send(mapArray)
     })
 
-    app.post('/appointment',async(req,res)=>{
-      
+    app.post('/appointment',async (req,res)=>{
+      console.log(req.body)
     })
   } finally {
     // await client.close();
