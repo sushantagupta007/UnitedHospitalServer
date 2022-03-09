@@ -49,7 +49,7 @@ async function run() {
     app.post('/appointment',async(req,res)=>{
       const data = req.body
       const appointment = database.collection("appointment");
-      console.log("hello")
+      
       const doc = {
         name: data.Name,
         doctor:data.Doctor,
@@ -60,7 +60,7 @@ async function run() {
       }
       const result = await appointment.insertOne(doc);
       console.log(result)
-      res.send(doc)
+      res.json(doc)
     })
     
     app.get('/appointment',async(req,res)=>{
@@ -69,6 +69,16 @@ async function run() {
       res.send(appointmentArray)
     })
     
+    app.post('/newuser',async(req,res)=>{
+      const data = req.body
+      const newUser = database.collection("newUser");
+      const userData = {
+        name:data.name,
+        email:data.email
+      }
+      const result = await newUser.insertOne(userData);
+      res.send(userData)
+    })
   } finally {
     // await client.close();
   }
