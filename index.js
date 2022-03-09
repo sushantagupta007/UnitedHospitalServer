@@ -21,7 +21,7 @@ async function run() {
     const doctors = database.collection("Doctors"); 
     const maps = database.collection("Map");
 
-    const appointment = database.collection("appointment");
+  
     //For insert Document 
 
 
@@ -49,7 +49,7 @@ async function run() {
     app.post('/appointment',async(req,res)=>{
       const data = req.body
       const subscriber = database.collection("appointment");
-    
+      console.log("hello")
       const doc = {
         name: data.Name,
         doctor:data.Doctor,
@@ -60,6 +60,12 @@ async function run() {
       }
       const result = await subscriber.insertOne(doc);
       res.send(doc)
+    })
+    
+    app.get('/appointment',async(req,res)=>{
+      const appointment = appointment.find({})
+      const appointmentArray = await appointment.toArray()
+      res.send(appointmentArray)
     })
     
   } finally {
