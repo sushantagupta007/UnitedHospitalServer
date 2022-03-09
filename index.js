@@ -21,7 +21,7 @@ async function run() {
     const doctors = database.collection("Doctors"); 
     const maps = database.collection("Map");
 
-    const haiku = database.collection("appointment");
+    const appointment = database.collection("appointment");
     //For insert Document 
 
 
@@ -46,9 +46,22 @@ async function run() {
       res.send(mapArray)
     })
 
-    app.post('/appointment',async (req,res)=>{
-      console.log(req.body)
+    app.post('/appointment',async(req,res)=>{
+      const data = req.body
+      const subscriber = database.collection("appointment");
+    
+      const doc = {
+        name: data.Name,
+        doctor:data.Doctor,
+        email:data.Email,
+        phone:data.phone, 
+        time:data.Time,
+        date:data.Date
+      }
+      const result = await subscriber.insertOne(doc);
+      res.send(doc)
     })
+    
   } finally {
     // await client.close();
   }
