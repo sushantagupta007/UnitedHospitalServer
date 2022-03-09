@@ -21,6 +21,10 @@ async function run() {
     const doctors = database.collection("Doctors"); 
     const maps = database.collection("Map");
 
+    const haiku = database.collection("appointment");
+    //For insert Document 
+
+
     //Service Collection
     app.get('/services',async(req,res)=>{
       const service =  services.find({});
@@ -40,6 +44,10 @@ async function run() {
       const map = maps.find({})
       const mapArray= await map.toArray()
       res.send(mapArray)
+    })
+
+    app.post('/appointment',async(req,res)=>{
+      
     })
   } finally {
     // await client.close();
