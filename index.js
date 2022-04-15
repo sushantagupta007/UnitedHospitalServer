@@ -116,8 +116,6 @@ async function run() {
 run().catch(console.dir);
 
 
-//user: healthCity
-//pass : ss5VF6UJKYeWABMB
 
 app.listen(port, () => {
     console.log("Listening Port", port)
